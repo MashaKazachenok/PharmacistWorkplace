@@ -57,7 +57,10 @@ namespace Web.Controllers
         // GET: /Clients/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ClientRepository repository = new ClientRepository();
+            Client client = repository.GetById(id);
+
+            return View(client);
         }
 
         //

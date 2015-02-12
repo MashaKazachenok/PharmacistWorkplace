@@ -12,6 +12,8 @@
 <div>   
     @foreach (var item in Model)
     {
-        <p>@item.FirstName @item.LastName</p>        
+        <p>
+            @item.FirstName @item.LastName <a href="/Clients/Edit/@item.Id">Edit</a>
+    </p>        
     }
 </div>

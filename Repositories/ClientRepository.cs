@@ -27,12 +27,14 @@ namespace Repositories
             Client vasia = new Client()
             {
                 FirstName = "Вася",
-                LastName = "Вася"
+                LastName = "Вася",
+                Id = 1
             };
             Client masha = new Client()
             {
                 FirstName = "Mаша",
-                LastName = "Маша"
+                LastName = "Маша",
+                Id = 2
             };
 
             clients.Add(vasia);
@@ -43,6 +45,26 @@ namespace Repositories
 
         public Client GetById(int id)
         {
+            if (id == 1)
+            {
+                return new Client()
+                {
+                    FirstName = "Вася",
+                    LastName = "Вася",
+                    Id = 1
+                };
+            }
+
+            if (id == 2)
+            {
+                return new Client()
+                {
+                    FirstName = "Mаша",
+                    LastName = "Маша",
+                    Id = 2
+                };
+            }
+
             return new Client();
         }
     }
