@@ -153,8 +153,18 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{e7a3cd8d-23bc-430c-b306-eec66f3886f1}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{2df216cf-e6a9-4a6b-a2b3-a5d57afd68f0}</Project>
+      <Name>Repositories</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

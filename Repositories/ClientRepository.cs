@@ -22,7 +22,23 @@ namespace Repositories
 
         public List<Client> GetAll()
         {
-            return new List<Client>();
+            List<Client> clients = new List<Client>();
+
+            Client vasia = new Client()
+            {
+                FirstName = "Вася",
+                LastName = "Вася"
+            };
+            Client masha = new Client()
+            {
+                FirstName = "Mаша",
+                LastName = "Маша"
+            };
+
+            clients.Add(vasia);
+            clients.Add(masha);
+
+            return clients;
         }
 
         public Client GetById(int id)

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Repositories;
+using Models;
 
 namespace Web.Controllers
 {
@@ -12,7 +14,10 @@ namespace Web.Controllers
         // GET: /Clients/
         public ActionResult Index()
         {
-            return View();
+            ClientRepository repository = new ClientRepository();
+            List<Client> clients = repository.GetAll();
+
+            return View(clients);
         }
 
         //
@@ -32,11 +37,13 @@ namespace Web.Controllers
         //
         // POST: /Clients/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Client model)
         {
             try
             {
-                // TODO: Add insert logic here
+                ClientRepository repository = new ClientRepository();
+
+                repository.CreateClient(model);
 
                 return RedirectToAction("Index");
             }
