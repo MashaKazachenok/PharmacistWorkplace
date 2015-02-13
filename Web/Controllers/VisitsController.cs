@@ -31,6 +31,7 @@ namespace Web.Controllers
         {
             VisitViewModel model = new VisitViewModel();
             model.ClientId = clientId;
+            model.VisitData = DateTime.Now;
 
             return View(model);
         }

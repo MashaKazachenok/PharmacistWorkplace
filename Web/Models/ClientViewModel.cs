@@ -29,12 +29,15 @@ namespace Web.Models
 
         [Required(ErrorMessage = "Please enter email ")]
         [StringLength(100)]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter left eye")]
+        [Range(-10, 10)]
         public double LeftEye { get; set; }
 
         [Required(ErrorMessage = "Please enter right eye")]
+        [Range(-10,10)]
         public double RightEye { get; set; }
     }
 }
