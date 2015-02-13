@@ -8,6 +8,11 @@ namespace Models
 {
     public class Client
     {
+        public Client()
+        {
+            Visits = new List<Visit>();
+        }
+
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

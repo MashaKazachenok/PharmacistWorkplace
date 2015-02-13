@@ -16,7 +16,7 @@ namespace Web.Controllers
         public ActionResult Index()
         {
             ClientRepository repository = new ClientRepository();
-            List<Client> clients = repository.GetAll();
+            List<Client> clients = repository.GetAllClients();
 
             return View(clients);
         }
@@ -27,9 +27,10 @@ namespace Web.Controllers
         {
 
             ClientRepository repository = new ClientRepository();
-            Client client = repository.GetById(id);
+            Client client = repository.GetClientById(id);
 
             ClientDetailsViewModel model = new ClientDetailsViewModel();
+            model.Id = client.Id;
             model.FirstName = client.FirstName;
             model.LastName = client.LastName;
             model.DateOfBirth = client.DateOfBirth;
@@ -38,6 +39,18 @@ namespace Web.Controllers
             model.Email = client.Email;
             model.LeftEye = client.LeftEye;
             model.RightEye = client.RightEye;
+
+            foreach (var visit in client.Visits)
+            {
+                VisitDetailsViewModel visitModel = new VisitDetailsViewModel();
+
+                visitModel.Id = visit.Id;
+                visitModel.VisitData = visit.VisitData;
+                visitModel.OrderAmount = visit.OrderAmount;
+                visitModel.OrderStatus = visit.OrderStatus;
+
+                model.Visits.Add(visitModel);                
+            }
 
             return View(model);
         }
@@ -68,16 +81,7 @@ namespace Web.Controllers
                 client.LeftEye = model.LeftEye;
                 client.RightEye = model.RightEye;
 
-                try
-                {
-                    repository.CreateClient(client);
-
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    return View("Error"); 
-                }
+                return RedirectToAction("Index");
             }
             else
             {
@@ -90,7 +94,7 @@ namespace Web.Controllers
         public ActionResult Edit(int id)
         {
             ClientRepository repository = new ClientRepository();
-            Client client = repository.GetById(id);
+            Client client = repository.GetClientById(id);
 
             ClientViewModel model = new ClientViewModel();
             model.FirstName = client.FirstName;
@@ -114,7 +118,7 @@ namespace Web.Controllers
             {
                 ClientRepository repository = new ClientRepository();
 
-                Client client = repository.GetById(id);
+                Client client = repository.GetClientById(id);
  
                 client.FirstName = model.FirstName;
                 client.LastName = model.LastName;

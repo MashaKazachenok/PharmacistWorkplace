@@ -11,5 +11,7 @@ namespace Repositories
     public class DatabaseContext : DbContext
     {
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Visit> Visits { get; set; }
+
     }
 }

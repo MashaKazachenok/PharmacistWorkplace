@@ -31,14 +31,14 @@ namespace Repositories
             databaseContext.SaveChanges();
         }
 
-        public List<Client> GetAll()
+        public List<Client> GetAllClients()
         {
             DatabaseContext databaseContext = new DatabaseContext();
             List<Client> spisok = databaseContext.Clients.ToList();
             return spisok;
         }
 
-        public Client GetById(int id)
+        public Client GetClientById(int id)
         {
             DatabaseContext databaseContext = new DatabaseContext();
             Client client = databaseContext.Clients.FirstOrDefault(x => x.Id == id);
@@ -46,5 +46,19 @@ namespace Repositories
             return client;
         }
 
+        public void CreateVisit(Visit visit)
+        {
+            DatabaseContext databaseContext = new DatabaseContext();
+            databaseContext.Visits.Add(visit);
+            databaseContext.SaveChanges();
+        }
+
+        public void RemoveVisit(int id)
+        {
+            DatabaseContext databaseContext = new DatabaseContext();
+            Visit visit = databaseContext.Visits.FirstOrDefault(x => x.Id == id);
+            databaseContext.Visits.Remove(visit);
+            databaseContext.SaveChanges();
+        }
     }
 }

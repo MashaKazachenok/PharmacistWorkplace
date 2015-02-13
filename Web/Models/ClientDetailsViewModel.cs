@@ -7,6 +7,12 @@ namespace Web.Models
 {
     public class ClientDetailsViewModel
     {
+        public ClientDetailsViewModel()
+        {
+            Visits = new List<VisitDetailsViewModel>();
+        }
+
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
