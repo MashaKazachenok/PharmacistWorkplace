@@ -6,14 +6,18 @@
 
 <div class="jumbotron">
     <h1>Clients</h1> 
-    <p><a href="/Clients/Create">Create</a></p>       
+    <p><a href="/Clients/Create">Create</a></p>         
 </div>
 
 <div>   
-    @foreach (var item in Model)
+        @foreach (var item in Model)
     {
         <p>
             @item.FirstName @item.LastName <a href="/Clients/Edit/@item.Id">Edit</a>
+            <a href="/Clients/Delete">Delete</a>
+            <a href="/Clients/Delete">Add visit</a>
+            <a href="/Clients/Delete">View visit</a>
+
     </p>        
     }
 </div>

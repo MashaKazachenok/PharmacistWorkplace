@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Repositories;
 using Models;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -37,19 +38,29 @@ namespace Web.Controllers
         //
         // POST: /Clients/Create
         [HttpPost]
-        public ActionResult Create(Client model)
+        public ActionResult Create(ClientViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
                 ClientRepository repository = new ClientRepository();
 
-                repository.CreateClient(model);
+                Client client = new Client();
+                client.FirstName = model.FirstName;
+                client.LastName = model.LastName;
+                client.DateOfBirth = model.DateOfBirth;
+                client.Address = model.Address;
+                client.Phone = model.Phone;
+                client.Email = model.Email;
+                client.LeftEye = model.LeftEye;
+                client.RightEye = model.RightEye;
+
+                repository.CreateClient(client);
 
                 return RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return View(model);
             }
         }
 
@@ -60,24 +71,47 @@ namespace Web.Controllers
             ClientRepository repository = new ClientRepository();
             Client client = repository.GetById(id);
 
-            return View(client);
+            ClientViewModel model = new ClientViewModel();
+            model.FirstName = client.FirstName;
+            model.LastName = client.LastName;
+            model.DateOfBirth = client.DateOfBirth;
+            model.Address = client.Address;
+            model.Phone = client.Phone;
+            model.Email = client.Email;
+            model.LeftEye = client.LeftEye;
+            model.RightEye = client.RightEye;
+
+            return View(model);
         }
 
         //
         // POST: /Clients/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, ClientViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                ClientRepository repository = new ClientRepository();
+
+                Client client = repository.GetById(id);
+ 
+                client.FirstName = model.FirstName;
+                client.LastName = model.LastName;
+                client.DateOfBirth = model.DateOfBirth;
+                client.Address = model.Address;
+                client.Phone = model.Phone;
+                client.Email = model.Email;
+                client.LeftEye = model.LeftEye;
+                client.RightEye = model.RightEye;
+
+                repository.EditClient(client);
 
                 return RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
-            }
+                return View(model);
+            } 
         }
 
         //
