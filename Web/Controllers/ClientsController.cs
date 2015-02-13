@@ -25,7 +25,21 @@ namespace Web.Controllers
         // GET: /Clients/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            ClientRepository repository = new ClientRepository();
+            Client client = repository.GetById(id);
+
+            ClientDetailsViewModel model = new ClientDetailsViewModel();
+            model.FirstName = client.FirstName;
+            model.LastName = client.LastName;
+            model.DateOfBirth = client.DateOfBirth;
+            model.Address = client.Address;
+            model.Phone = client.Phone;
+            model.Email = client.Email;
+            model.LeftEye = client.LeftEye;
+            model.RightEye = client.RightEye;
+
+            return View(model);
         }
 
         //
