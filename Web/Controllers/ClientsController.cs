@@ -54,9 +54,16 @@ namespace Web.Controllers
                 client.LeftEye = model.LeftEye;
                 client.RightEye = model.RightEye;
 
-                repository.CreateClient(client);
+                try
+                {
+                    repository.CreateClient(client);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    return View("Error"); 
+                }
             }
             else
             {
@@ -118,7 +125,10 @@ namespace Web.Controllers
         // GET: /Clients/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            ClientRepository repository = new ClientRepository();
+            repository.RemoveClient(id);
+
+            return RedirectToAction("Index");
         }
 
         //

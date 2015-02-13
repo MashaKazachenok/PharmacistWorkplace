@@ -10,62 +10,41 @@ namespace Repositories
 {
     public class ClientRepository
     {
-        public int CreateClient(Client client)
+        public void CreateClient(Client client)
         {
-            return 0;
+            DatabaseContext databaseContext = new DatabaseContext();
+            databaseContext.Clients.Add(client);
+            databaseContext.SaveChanges();
         }
 
-        public int EditClient(Client client)
+        public void EditClient(Client client)
         {
-            return 0;
+            DatabaseContext databaseContext = new DatabaseContext();
+            databaseContext.SaveChanges();
+        }
+
+        public void RemoveClient(int id)
+        {
+            DatabaseContext databaseContext = new DatabaseContext();
+            Client client = databaseContext.Clients.FirstOrDefault(x => x.Id == id);
+            databaseContext.Clients.Remove(client);
+            databaseContext.SaveChanges();
         }
 
         public List<Client> GetAll()
         {
-            List<Client> clients = new List<Client>();
-
-            Client vasia = new Client()
-            {
-                FirstName = "Вася",
-                LastName = "Вася",
-                Id = 1
-            };
-            Client masha = new Client()
-            {
-                FirstName = "Mаша",
-                LastName = "Маша",
-                Id = 2
-            };
-
-            clients.Add(vasia);
-            clients.Add(masha);
-
-            return clients;
+            DatabaseContext databaseContext = new DatabaseContext();
+            List<Client> spisok = databaseContext.Clients.ToList();
+            return spisok;
         }
 
         public Client GetById(int id)
         {
-            if (id == 1)
-            {
-                return new Client()
-                {
-                    FirstName = "Вася",
-                    LastName = "Вася",
-                    Id = 1
-                };
-            }
+            DatabaseContext databaseContext = new DatabaseContext();
+            Client client = databaseContext.Clients.FirstOrDefault(x => x.Id == id);
 
-            if (id == 2)
-            {
-                return new Client()
-                {
-                    FirstName = "Mаша",
-                    LastName = "Маша",
-                    Id = 2
-                };
-            }
-
-            return new Client();
+            return client;
         }
+
     }
 }
