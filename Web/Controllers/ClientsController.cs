@@ -18,7 +18,22 @@ namespace Web.Controllers
             ClientRepository repository = new ClientRepository();
             List<Client> clients = repository.GetAllClients(search);
             ClientListViewModel model = new ClientListViewModel();
-            model.Clients = clients;
+
+            model.Clients = new List<ClientInfoViewModel>();
+
+            foreach (var client in clients)
+            {
+                ClientInfoViewModel clientInfoviewModel = new ClientInfoViewModel()
+                {
+                    Id = client.Id,
+                    FirstName = client.FirstName,
+                    LastName = client.LastName,
+                    VisitCount = client.Visits.Count
+                };
+
+                model.Clients.Add(clientInfoviewModel);
+            }
+
             return View(model);
         }
 

@@ -9,7 +9,7 @@ namespace Web.Models
 {
     public class ClientListViewModel
     {
-        public List<Client> Clients { get; set; }
+        public List<ClientInfoViewModel> Clients { get; set; }
         public string Search { get; set; }
     }
 

@@ -38,12 +38,18 @@ namespace Repositories
         {
             if (search == null || search == "")
             {
-                List<Client> spisok = databaseContext.Clients.ToList();
+                List<Client> spisok = databaseContext.Clients
+                    .Include("Visits")
+                    .ToList();
                 return spisok;
             }
             else
             {
-                List<Client> spisok = databaseContext.Clients.Where(x => x.LastName.Contains(search) || x.FirstName.Contains(search)).ToList();
+                List<Client> spisok = databaseContext.Clients
+                    .Include("Visits")
+                    .Where(x => x.LastName.Contains(search) || x.FirstName.Contains(search))
+                    .ToList();
+
                 return spisok;
             }
 
