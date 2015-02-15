@@ -45,7 +45,27 @@
                 <td>@item.DateOfBirth.ToShortDateString()</td>
                 <td>@item.VisitCount</td>
                 <td><a href="/Clients/Edit/@item.Id">Edit</a></td>
-                <td><a href="/Clients/Delete/@item.Id">Delete</a> </td>
+                <td>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="modal" data-target="#myModal"></span>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Delete client</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-primary" href="/Clients/Delete/@item.Id">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
                 <td> <a href="/Clients/Details/@item.Id">View details</a></td>
                 <td><a href="/Visits/Create?ClientId=@item.Id">Add visit</a></td>
             </tr>

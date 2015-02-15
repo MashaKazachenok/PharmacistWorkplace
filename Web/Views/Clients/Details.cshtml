@@ -87,7 +87,27 @@
                 <td>@item.OrderAmount </td>
                 <td>@item.OrderStatus</td>
                 <td><a href="/Visits/Edit/@item.Id">Edit</a> </td>
-                <td><a href="/Visits/Delete/@item.Id?ClientId=@Model.Id">Delete</a></td>
+                <td>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="modal" data-target="#myModal"></span>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Delete visit</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-primary" href="/Visits/Delete/@item.Id?ClientId=@Model.Id">Delete</a>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
         }
     </table>
