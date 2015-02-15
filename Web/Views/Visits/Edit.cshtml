@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.OrderAmount, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OrderAmount)
+                @Html.EditorFor(model => model.OrderAmount) $
                 @Html.ValidationMessageFor(model => model.OrderAmount)
             </div>
         </div>
@@ -55,9 +55,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to client details", "Details", "Clients", new { id = Model.ClientId }, null)
 </div>
 
-@section Scripts {
+@section Scripts {,
     @Scripts.Render("~/bundles/jqueryval")
 }

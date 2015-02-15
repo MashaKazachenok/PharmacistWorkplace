@@ -60,14 +60,19 @@
         </dd>
 
     </dl>
-    <p><a href="/Visits/Create?ClientId=@Model.Id">Add Visit</a></p>
+    <p>
+        @Html.ActionLink("Edit client", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to client list", "Index")
+    </p>
+    <p>
+        <a href="/Visits/Create?ClientId=@Model.Id">Add visit</a>
+    </p>
     <table class="table table-striped">
         <tr>
             <th>№</th>
             <th>Visit date  </th>
             <th>Order amount </th>
             <th>Order status</th>
-            <th></th>
             <th></th>
             <th></th>
         </tr>
@@ -83,12 +88,7 @@
                 <td>@item.OrderStatus</td>
                 <td><a href="/Visits/Edit/@item.Id">Edit</a> </td>
                 <td><a href="/Visits/Delete/@item.Id?ClientId=@Model.Id">Delete</a></td>
-                <td><a href="/Visits/Create?ClientId=@item.Id">Add visit</a></td>
             </tr>
         }
     </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
