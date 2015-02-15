@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit visit</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4></h4>
+        <h4>Client: @Model.FirstName @Model.LastName</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.ClientId)

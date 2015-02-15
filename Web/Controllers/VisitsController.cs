@@ -76,7 +76,8 @@ namespace Web.Controllers
             model.OrderStatus = visit.OrderStatus;
             model.VisitData = visit.VisitData;
             model.ClientId = visit.Client.Id;
-      
+            model.FirstName = visit.Client.FirstName;
+            model.LastName = visit.Client.LastName;
 
             return View(model);
         }

@@ -9,6 +9,8 @@ namespace Web.Models
     public class VisitViewModel
     {
         public int ClientId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         [Required(ErrorMessage = "Please enter visit data ")]
         public DateTime VisitData { get; set; }
