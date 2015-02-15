@@ -29,9 +29,14 @@ namespace Web.Controllers
         // GET: /Visits/Create
         public ActionResult Create(int clientId)
         {
+            ClientRepository repository = new ClientRepository();
+             Client client = repository.GetClientById(clientId);
+
             VisitViewModel model = new VisitViewModel();
             model.ClientId = clientId;
             model.VisitData = DateTime.Now;
+            model.LastName = client.LastName;
+            model.FirstName = client.FirstName;
 
             return View(model);
         }
