@@ -43,7 +43,7 @@ namespace Repositories
             }
             else
             {
-                List<Client> spisok = databaseContext.Clients.Where(x => x.LastName == search || x.FirstName == search ).ToList();
+                List<Client> spisok = databaseContext.Clients.Where(x => x.LastName.Contains(search) || x.FirstName.Contains(search)).ToList();
                 return spisok;
             }
 
