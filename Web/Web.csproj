@@ -168,6 +168,7 @@
     <Content Include="Views\Clients\Edit.cshtml" />
     <Content Include="Views\Clients\Details.cshtml" />
     <Content Include="Views\Visits\Create.cshtml" />
+    <Content Include="Views\Visits\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

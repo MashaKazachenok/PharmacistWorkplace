@@ -15,7 +15,7 @@ namespace Web.Models
 
         [Required(ErrorMessage = "Please enter order amount")]
         [Range(0, 10000)]
-        public int OrderAmount { get; set; }
+        public double OrderAmount { get; set; }
 
         [Required(ErrorMessage = "Please enter order status")]
         public string OrderStatus { get; set; }

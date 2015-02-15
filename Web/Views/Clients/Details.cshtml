@@ -65,11 +65,8 @@
     {
         <p>
             @item.VisitData @item.OrderAmount @item.OrderStatus |
-            <a href="/Clients/Edit/@item.Id">Edit</a>
-            <a href="/Clients/Delete/@item.Id">Delete</a> |
-
-            <a href="/Clients/Details/@item.Id">View details</a>
-            <a href="/Visits/Create?ClientId=@item.Id">Add visit</a>
+            <a href="/Visits/Edit/@item.Id">Edit</a>
+            <a href="/Visits/Delete/@item.Id">Delete</a> |
         </p>
     }
 </div>

@@ -50,8 +50,8 @@ namespace Web.Controllers
                 Visit visit = new Visit();
                 visit.OrderAmount = model.OrderAmount;
                 visit.OrderStatus = model.OrderStatus;
-                visit.VisitData = model.VisitData;     
-                visit.Owner = client;
+                visit.VisitData = model.VisitData;
+
                 client.Visits.Add(visit);
 
                 repository.CreateVisit(visit);
@@ -68,23 +68,41 @@ namespace Web.Controllers
         // GET: /Visits/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ClientRepository repository = new ClientRepository();
+
+            Visit visit = repository.GetVisitById(id);
+            VisitViewModel model = new VisitViewModel();
+            model.OrderAmount = visit.OrderAmount;
+            model.OrderStatus = visit.OrderStatus;
+            model.VisitData = visit.VisitData;
+            model.ClientId = visit.Client.Id;
+      
+
+            return View(model);
         }
 
         //
         // POST: /Visits/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, int clientId, VisitViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                ClientRepository repository = new ClientRepository();
 
-                return RedirectToAction("Index");
+                Visit visit = repository.GetVisitById(id);
+
+                visit.OrderAmount = model.OrderAmount;
+                visit.OrderStatus = model.OrderStatus;
+                visit.VisitData = model.VisitData;
+
+                repository.EditVisit(visit);
+
+                return RedirectToAction("Details", "Clients", new { id = clientId });
             }
-            catch
+            else
             {
-                return View();
+                return View(model);
             }
         }
 

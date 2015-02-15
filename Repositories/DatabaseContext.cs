@@ -13,5 +13,14 @@ namespace Repositories
         public DbSet<Client> Clients { get; set; }
         public DbSet<Visit> Visits { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Client>()
+                .HasMany(x => x.Visits)
+                .WithRequired(x => x.Client)
+                .WillCascadeOnDelete();
+        }
     }
 }

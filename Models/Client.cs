@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Models
             Visits = new List<Visit>();
         }
 
+        [Key]
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -23,6 +25,6 @@ namespace Models
         public double LeftEye { get; set; }
         public double RightEye { get; set; }
 
-        public List<Visit> Visits { get; set; }
+        public ICollection<Visit> Visits { get; set; }
     }
 }

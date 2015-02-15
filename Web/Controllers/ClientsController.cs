@@ -40,7 +40,9 @@ namespace Web.Controllers
             model.LeftEye = client.LeftEye;
             model.RightEye = client.RightEye;
 
-            foreach (var visit in client.Visits)
+            List<Visit> visits = repository.GetAllVisitsByClientId(client.Id);
+
+            foreach (var visit in visits)
             {
                 VisitDetailsViewModel visitModel = new VisitDetailsViewModel();
 
@@ -80,6 +82,8 @@ namespace Web.Controllers
                 client.Email = model.Email;
                 client.LeftEye = model.LeftEye;
                 client.RightEye = model.RightEye;
+
+                repository.CreateClient(client);
 
                 return RedirectToAction("Index");
             }
