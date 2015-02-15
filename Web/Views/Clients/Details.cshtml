@@ -62,6 +62,15 @@
     </dl>
     <p><a href="/Visits/Create?ClientId=@Model.Id">Add Visit</a></p>
     <table class="table table-striped">
+        <tr>
+            <th>№</th>
+            <th>Visit date  </th>
+            <th>Order amount </th>
+            <th>Order status</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
         @for (int i = 0; i < Model.Visits.Count; i++)
         {
             var item = Model.Visits[i];
@@ -73,7 +82,7 @@
                 <td>@item.OrderAmount </td>
                 <td>@item.OrderStatus</td>
                 <td><a href="/Visits/Edit/@item.Id">Edit</a> </td>
-                <td> <a href="/Visits/Delete/@item.Id?ClientId=@Model.Id">Delete</a> </td>
+                <td><a href="/Visits/Delete/@item.Id?ClientId=@Model.Id">Delete</a></td>
                 <td><a href="/Visits/Create?ClientId=@item.Id">Add visit</a></td>
             </tr>
         }

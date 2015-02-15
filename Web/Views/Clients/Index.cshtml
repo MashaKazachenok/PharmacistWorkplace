@@ -17,6 +17,15 @@
 
 <div>
     <table class="table table-striped">
+        <tr>
+            <th>№</th>
+            <th>First name</th>
+            <th>Last Name </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>   
         @for (int i = 0; i < Model.Clients.Count; i++)
         {
             var item = Model.Clients[i];
@@ -24,8 +33,8 @@
             
             <tr>
                 <td>@displayIndex</td>
-                <td> @item.FirstName</td>
-                <td> @item.LastName </td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName </td>
                 <td><a href="/Clients/Edit/@item.Id">Edit</a></td>
                 <td><a href="/Clients/Delete/@item.Id">Delete</a> </td>
                 <td> <a href="/Clients/Details/@item.Id">View details</a></td>
