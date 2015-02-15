@@ -14,6 +14,6 @@ namespace Models
         public DateTime VisitData { get; set; }
         public double OrderAmount { get; set; }
         public string OrderStatus { get; set; }
-        public Client Client { get; set; }
+        public virtual Client Client { get; set; }
     }
 }

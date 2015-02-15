@@ -21,6 +21,9 @@ namespace Repositories
                 .HasMany(x => x.Visits)
                 .WithRequired(x => x.Client)
                 .WillCascadeOnDelete();
+
+            modelBuilder.Entity<Visit>()
+                .HasRequired(x => x.Client);
         }
     }
 }
