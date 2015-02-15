@@ -28,6 +28,7 @@ namespace Web.Controllers
                     Id = client.Id,
                     FirstName = client.FirstName,
                     LastName = client.LastName,
+                    DateOfBirth = client.DateOfBirth,
                     VisitCount = client.Visits.Count
                 };
 

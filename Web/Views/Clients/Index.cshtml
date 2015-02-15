@@ -4,44 +4,51 @@
     ViewBag.Title = "Clients";
 }
 
-<div class="jumbotron">
-    <h1>Clients</h1>
-    <p><a href="/Clients/Create">Create</a></p>
+<div class="jumbotron row">
+    <div class="col-md-4">
+        <div class="margin-top-70"><a href="/Clients/Create">Create client</a></div>
+    </div>
+    <div class="col-md-8">
+        <img src="/Images/glasses-angle.png" width="500" height="200" />
+    </div>
 </div>
-<div>
+
+<div class="row">
     <form action="/Clients" method="get">
         @Html.EditorFor(x => x.Search)
         <input type="submit" value="Search">
     </form>
 </div>
 
-<div>
+<div class="row margin-top-10">
     <table class="table table-striped">
         <tr>
             <th>№</th>
             <th>First name</th>
             <th>Last Name</th>
+            <th>DateOfBirth</th>
             <th>Visit count</th>
             <th></th>
             <th></th>
             <th></th>
             <th></th>
-        </tr>   
+        </tr>
         @for (int i = 0; i < Model.Clients.Count; i++)
         {
             var item = Model.Clients[i];
             var displayIndex = i + 1;
-            
+
             <tr>
                 <td>@displayIndex</td>
                 <td>@item.FirstName</td>
                 <td>@item.LastName</td>
+                <td>@item.DateOfBirth.ToShortDateString()</td>
                 <td>@item.VisitCount</td>
                 <td><a href="/Clients/Edit/@item.Id">Edit</a></td>
                 <td><a href="/Clients/Delete/@item.Id">Delete</a> </td>
                 <td> <a href="/Clients/Details/@item.Id">View details</a></td>
                 <td><a href="/Visits/Create?ClientId=@item.Id">Add visit</a></td>
-            </tr>            
+            </tr>
         }
     </table>
 </div>

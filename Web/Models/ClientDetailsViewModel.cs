@@ -18,7 +18,8 @@ namespace Web.Models
         [Display(Name = "Имя пользователя")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         [Display(Name = "Дата рождения")]
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }

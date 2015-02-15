@@ -83,7 +83,7 @@
 
             <tr>
                 <td>@displayIndex</td>
-                <td>@item.VisitData  </td>
+                <td>@item.VisitData.ToShortDateString()</td>
                 <td>@item.OrderAmount </td>
                 <td>@item.OrderStatus</td>
                 <td><a href="/Visits/Edit/@item.Id">Edit</a> </td>
