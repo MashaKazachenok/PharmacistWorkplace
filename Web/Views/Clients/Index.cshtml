@@ -10,21 +10,27 @@
 </div>
 <div>
     <form action="/Clients" method="get">
-        @Html.EditorFor(x=>x.Search)
+        @Html.EditorFor(x => x.Search)
         <input type="submit" value="Search">
     </form>
 </div>
 
 <div>
-    @foreach (var item in Model.Clients)
-    { 
-        <p>
-            @item.FirstName @item.LastName |
-            <a href="/Clients/Edit/@item.Id">Edit</a>
-            <a href="/Clients/Delete/@item.Id">Delete</a> |
-
-            <a href="/Clients/Details/@item.Id">View details</a>
-            <a href="/Visits/Create?ClientId=@item.Id">Add visit</a>
-        </p>
-    }
+    <table class="table table-striped">
+        @for (int i = 0; i < Model.Clients.Count; i++)
+        {
+            var item = Model.Clients[i];
+            var displayIndex = i + 1;
+            
+            <tr>
+                <td>@displayIndex</td>
+                <td> @item.FirstName</td>
+                <td> @item.LastName </td>
+                <td><a href="/Clients/Edit/@item.Id">Edit</a></td>
+                <td><a href="/Clients/Delete/@item.Id">Delete</a> </td>
+                <td> <a href="/Clients/Details/@item.Id">View details</a></td>
+                <td><a href="/Visits/Create?ClientId=@item.Id">Add visit</a></td>
+            </tr>            
+        }
+    </table>
 </div>
