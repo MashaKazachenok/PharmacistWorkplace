@@ -13,10 +13,10 @@ namespace Web.Controllers
     {
         //
         // GET: /Clients/
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
             ClientRepository repository = new ClientRepository();
-            List<Client> clients = repository.GetAllClients();
+            List<Client> clients = repository.GetAllClients(search);
 
             return View(clients);
         }

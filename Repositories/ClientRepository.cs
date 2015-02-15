@@ -34,11 +34,20 @@ namespace Repositories
             databaseContext.SaveChanges();
         }
 
-        public List<Client> GetAllClients()
+        public List<Client> GetAllClients(string search)
         {
-            List<Client> spisok = databaseContext.Clients.ToList();
+            if (search == null || search == "")
+            {
+                List<Client> spisok = databaseContext.Clients.ToList();
+                return spisok;
+            }
+            else
+            {
+                List<Client> spisok = databaseContext.Clients.Where(x => x.LastName == search || x.FirstName == search ).ToList();
+                return spisok;
+            }
 
-            return spisok;
+           
         }
 
         public Client GetClientById(int id)

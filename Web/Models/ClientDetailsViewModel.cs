@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,8 +14,12 @@ namespace Web.Models
         }
 
         public int Id { get; set; }
+
+        [Display(Name = "Имя пользователя")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        
+        [Display(Name = "Дата рождения")]
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }

@@ -24,6 +24,7 @@ namespace Models
         public string Email { get; set; }
         public double LeftEye { get; set; }
         public double RightEye { get; set; }
+      
 
         public ICollection<Visit> Visits { get; set; }
     }

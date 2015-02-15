@@ -1,5 +1,6 @@
 ﻿@model List<Models.Client>
 
+
 @{
     ViewBag.Title = "Clients";
 }
@@ -8,10 +9,16 @@
     <h1>Clients</h1>
     <p><a href="/Clients/Create">Create</a></p>
 </div>
+<div>
+    <form action="/Clients" method="get">
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
+</div>
 
 <div>
     @foreach (var item in Model)
-    {
+    { 
         <p>
             @item.FirstName @item.LastName |
             <a href="/Clients/Edit/@item.Id">Edit</a>
