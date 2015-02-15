@@ -1,5 +1,4 @@
-﻿@model List<Models.Client>
-
+﻿@model Web.Models.ClientListViewModel
 
 @{
     ViewBag.Title = "Clients";
@@ -11,13 +10,13 @@
 </div>
 <div>
     <form action="/Clients" method="get">
-        <input type="text" name="search">
+        @Html.EditorFor(x=>x.Search)
         <input type="submit" value="Search">
     </form>
 </div>
 
 <div>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Clients)
     { 
         <p>
             @item.FirstName @item.LastName |

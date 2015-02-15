@@ -17,8 +17,9 @@ namespace Web.Controllers
         {
             ClientRepository repository = new ClientRepository();
             List<Client> clients = repository.GetAllClients(search);
-
-            return View(clients);
+            ClientListViewModel model = new ClientListViewModel();
+            model.Clients = clients;
+            return View(model);
         }
 
         //
