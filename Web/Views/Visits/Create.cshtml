@@ -6,10 +6,10 @@
 
 <h2>Create visit</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Client: @Model.FirstName @Model.LastName</h4>
         <hr />
@@ -36,7 +36,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.OrderStatus, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OrderStatus)
+                @Html.DropDownListFor(model => model.OrderStatus, new[]
+           {
+                new SelectListItem() {Text = "In progress", Value = "InProgress" },
+                new SelectListItem() {Text = "Completed", Value = "Completed" },
+                new SelectListItem() {Text = "Cancelled", Value = "Cancelled" }
+           })
                 @Html.ValidationMessageFor(model => model.OrderStatus)
             </div>
         </div>
