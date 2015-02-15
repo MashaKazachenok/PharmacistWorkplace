@@ -8,7 +8,7 @@
 
 <div>
     <h4>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName) </h4>
-	<hr />
+    <hr />
     <dl class="dl-horizontal">
 
         <dt>
@@ -61,14 +61,23 @@
 
     </dl>
     <p><a href="/Visits/Create?ClientId=@Model.Id">Add Visit</a></p>
-    @foreach (var visit in Model.Visits)
-    {
-        <p>
-            @visit.VisitData @visit.OrderAmount @visit.OrderStatus |
-            <a href="/Visits/Edit/@visit.Id">Edit</a>
-            <a href="/Visits/Delete/@visit.Id?ClientId=@Model.Id">Delete</a> |
-        </p>
-    }
+    <table class="table table-striped">
+        @for (int i = 0; i < Model.Visits.Count; i++)
+        {
+            var item = Model.Visits[i];
+            var displayIndex = i + 1;
+
+            <tr>
+                <td>@displayIndex</td>
+                <td>@item.VisitData  </td>
+                <td>@item.OrderAmount </td>
+                <td>@item.OrderStatus</td>
+                <td><a href="/Visits/Edit/@item.Id">Edit</a> </td>
+                <td> <a href="/Visits/Delete/@item.Id?ClientId=@Model.Id">Delete</a> </td>
+                <td><a href="/Visits/Create?ClientId=@item.Id">Add visit</a></td>
+            </tr>
+        }
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
