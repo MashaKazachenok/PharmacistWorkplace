@@ -108,9 +108,12 @@ namespace Web.Controllers
 
         //
         // GET: /Visits/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, int clientId)
         {
-            return View();
+            ClientRepository repository = new ClientRepository();
+            repository.RemoveVisit(id);
+
+            return RedirectToAction("Details", "Clients", new { id = clientId });
         }
 
         //

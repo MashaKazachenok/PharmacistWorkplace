@@ -61,12 +61,12 @@
 
     </dl>
     <p><a href="/Visits/Create?ClientId=@Model.Id">Add Visit</a></p>
-    @foreach (var item in Model.Visits)
+    @foreach (var visit in Model.Visits)
     {
         <p>
-            @item.VisitData @item.OrderAmount @item.OrderStatus |
-            <a href="/Visits/Edit/@item.Id">Edit</a>
-            <a href="/Visits/Delete/@item.Id">Delete</a> |
+            @visit.VisitData @visit.OrderAmount @visit.OrderStatus |
+            <a href="/Visits/Edit/@visit.Id">Edit</a>
+            <a href="/Visits/Delete/@visit.Id?ClientId=@Model.Id">Delete</a> |
         </p>
     }
 </div>
