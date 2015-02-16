@@ -33,7 +33,6 @@ namespace Web.Models
         public string Phone { get; set; }
 
         [Display(Name = "Email")]
-        [Required(ErrorMessage = "Please enter email ")]
         [StringLength(100)]
         [EmailAddress]
         public string Email { get; set; }
