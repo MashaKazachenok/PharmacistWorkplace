@@ -14,11 +14,17 @@ namespace Web.Controllers
 {
     public class ClientsController : Controller
     {
+        ClientRepository repository;
+
+        public ClientsController()
+        {
+            repository = new ClientRepository();
+        }
+
         //
         // GET: /Clients/
         public ActionResult Index(string search)
         {
-            ClientRepository repository = new ClientRepository();
             List<Client> clients = repository.GetAllClients(search);
             ClientListViewModel model = new ClientListViewModel();
 
@@ -40,8 +46,6 @@ namespace Web.Controllers
         // GET: /Clients/Details/5
         public ActionResult Details(int id)
         {
-
-            ClientRepository repository = new ClientRepository();
             Client client = repository.GetClientById(id);
 
             ClientDetailsViewModel model = new ClientDetailsViewModel();
@@ -76,8 +80,6 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                ClientRepository repository = new ClientRepository();
-
                 Client client = new Client();
 
                 client = Mapper.Map<Client>(model);
@@ -96,7 +98,6 @@ namespace Web.Controllers
         // GET: /Clients/Edit/5
         public ActionResult Edit(int id)
         {
-            ClientRepository repository = new ClientRepository();
             Client client = repository.GetClientById(id);
 
             ClientViewModel model = new ClientViewModel();
@@ -113,8 +114,6 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                ClientRepository repository = new ClientRepository();
-
                 Client client = repository.GetClientById(id);
 
                 client = Mapper.Map<ClientViewModel, Client>(model, client);
@@ -133,7 +132,6 @@ namespace Web.Controllers
         // GET: /Clients/Delete/5
         public ActionResult Delete(int id)
         {
-            ClientRepository repository = new ClientRepository();
             repository.RemoveClient(id);
 
             return RedirectToAction("Index");
