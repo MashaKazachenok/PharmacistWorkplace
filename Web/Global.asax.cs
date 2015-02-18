@@ -1,4 +1,6 @@
-﻿using Repositories;
+﻿using AutoMapper;
+using Models;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Web.Models;
 
 namespace Web
 {
@@ -20,6 +23,12 @@ namespace Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.SetInitializer(new CreateDatabaseIfNotExists<DatabaseContext>());
+
+            Mapper.CreateMap<Visit, VisitDetailsViewModel>();
+            Mapper.CreateMap<ClientViewModel, Client>();
+            Mapper.CreateMap<Client, ClientViewModel>();
+            Mapper.CreateMap<Client, ClientDetailsViewModel>();
+            Mapper.CreateMap<Client, ClientInfoViewModel>();
         }
     }
 }

@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using Repositories;
 using Models;
 using Web.Models;
+using AutoMapper;
+
+
 
 namespace Web.Controllers
 {
@@ -23,14 +26,9 @@ namespace Web.Controllers
 
             foreach (var client in clients)
             {
-                ClientInfoViewModel clientInfoviewModel = new ClientInfoViewModel()
-                {
-                    Id = client.Id,
-                    FirstName = client.FirstName,
-                    LastName = client.LastName,
-                    DateOfBirth = client.DateOfBirth,
-                    VisitCount = client.Visits.Count
-                };
+                ClientInfoViewModel clientInfoviewModel = new ClientInfoViewModel();
+
+                clientInfoviewModel = Mapper.Map<ClientInfoViewModel>(client);
 
                 model.Clients.Add(clientInfoviewModel);
             }
@@ -47,15 +45,8 @@ namespace Web.Controllers
             Client client = repository.GetClientById(id);
 
             ClientDetailsViewModel model = new ClientDetailsViewModel();
-            model.Id = client.Id;
-            model.FirstName = client.FirstName;
-            model.LastName = client.LastName;
-            model.DateOfBirth = client.DateOfBirth;
-            model.Address = client.Address;
-            model.Phone = client.Phone;
-            model.Email = client.Email;
-            model.LeftEye = client.LeftEye;
-            model.RightEye = client.RightEye;
+
+            model = Mapper.Map<ClientDetailsViewModel>(client);
 
             List<Visit> visits = repository.GetAllVisitsByClientId(client.Id);
 
@@ -63,12 +54,9 @@ namespace Web.Controllers
             {
                 VisitDetailsViewModel visitModel = new VisitDetailsViewModel();
 
-                visitModel.Id = visit.Id;
-                visitModel.VisitData = visit.VisitData;
-                visitModel.OrderAmount = visit.OrderAmount;
-                visitModel.OrderStatus = visit.OrderStatus;
+                visitModel = Mapper.Map<VisitDetailsViewModel>(visit);
 
-                model.Visits.Add(visitModel);                
+                model.Visits.Add(visitModel);
             }
 
             return View(model);
@@ -91,14 +79,8 @@ namespace Web.Controllers
                 ClientRepository repository = new ClientRepository();
 
                 Client client = new Client();
-                client.FirstName = model.FirstName;
-                client.LastName = model.LastName;
-                client.DateOfBirth = model.DateOfBirth;
-                client.Address = model.Address;
-                client.Phone = model.Phone;
-                client.Email = model.Email;
-                client.LeftEye = model.LeftEye;
-                client.RightEye = model.RightEye;
+
+                client = Mapper.Map<Client>(model);
 
                 repository.CreateClient(client);
 
@@ -118,14 +100,8 @@ namespace Web.Controllers
             Client client = repository.GetClientById(id);
 
             ClientViewModel model = new ClientViewModel();
-            model.FirstName = client.FirstName;
-            model.LastName = client.LastName;
-            model.DateOfBirth = client.DateOfBirth;
-            model.Address = client.Address;
-            model.Phone = client.Phone;
-            model.Email = client.Email;
-            model.LeftEye = client.LeftEye;
-            model.RightEye = client.RightEye;
+
+            model = Mapper.Map<ClientViewModel>(client);
 
             return View(model);
         }
@@ -140,15 +116,8 @@ namespace Web.Controllers
                 ClientRepository repository = new ClientRepository();
 
                 Client client = repository.GetClientById(id);
- 
-                client.FirstName = model.FirstName;
-                client.LastName = model.LastName;
-                client.DateOfBirth = model.DateOfBirth;
-                client.Address = model.Address;
-                client.Phone = model.Phone;
-                client.Email = model.Email;
-                client.LeftEye = model.LeftEye;
-                client.RightEye = model.RightEye;
+
+                client = Mapper.Map<ClientViewModel, Client>(model, client);
 
                 repository.EditClient(client);
 
@@ -157,7 +126,7 @@ namespace Web.Controllers
             else
             {
                 return View(model);
-            } 
+            }
         }
 
         //
