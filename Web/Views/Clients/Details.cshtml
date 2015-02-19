@@ -80,6 +80,7 @@
         {
             var item = Model.Visits[i];
             var displayIndex = i + 1;
+            var dialogId = "dialog" + item.Id;
 
             <tr>
                 <td>@displayIndex</td>
@@ -88,9 +89,9 @@
                 <td>@item.OrderStatus</td>
                 <td><a href="/Visits/Edit/@item.Id">Edit</a> </td>
                 <td>
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="modal" data-target="#myModal"></span>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="modal" data-target="#@dialogId"></span>
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="@dialogId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -102,7 +103,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <a class="btn btn-primary" href="/Visits/Delete/@item.Id?ClientId=@Model.Id">Delete</a>                                    
+                                    <a class="btn btn-primary" href="/Visits/Delete/@item.Id?ClientId=@Model.Id">Delete</a>
                                 </div>
                             </div>
                         </div>
