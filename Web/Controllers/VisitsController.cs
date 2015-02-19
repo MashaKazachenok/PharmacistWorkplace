@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using AutoMapper;
+using Models;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -30,14 +31,13 @@ namespace Web.Controllers
         public ActionResult Create(int clientId)
         {
             ClientRepository repository = new ClientRepository();
-             Client client = repository.GetClientById(clientId);
+            Client client = repository.GetClientById(clientId);
 
             VisitViewModel model = new VisitViewModel();
+            model = Mapper.Map<VisitViewModel>(client);
             model.ClientId = clientId;
             model.VisitData = DateTime.Now;
-            model.LastName = client.LastName;
-            model.FirstName = client.FirstName;
-
+            
             return View(model);
         }
 
@@ -53,10 +53,8 @@ namespace Web.Controllers
                 Client client = repository.GetClientById(clientId);
 
                 Visit visit = new Visit();
-                visit.OrderAmount = model.OrderAmount;
-                visit.OrderStatus = model.OrderStatus;
-                visit.VisitData = model.VisitData;
-
+                visit = Mapper.Map<Visit>(model);
+               
                 client.Visits.Add(visit);
 
                 repository.CreateVisit(visit);
@@ -77,13 +75,8 @@ namespace Web.Controllers
 
             Visit visit = repository.GetVisitById(id);
             VisitViewModel model = new VisitViewModel();
-            model.OrderAmount = visit.OrderAmount;
-            model.OrderStatus = visit.OrderStatus;
-            model.VisitData = visit.VisitData;
-            model.ClientId = visit.Client.Id;
-            model.FirstName = visit.Client.FirstName;
-            model.LastName = visit.Client.LastName;
-
+            model = Mapper.Map<VisitViewModel>(visit);
+          
             return View(model);
         }
 
@@ -97,11 +90,8 @@ namespace Web.Controllers
                 ClientRepository repository = new ClientRepository();
 
                 Visit visit = repository.GetVisitById(id);
-
-                visit.OrderAmount = model.OrderAmount;
-                visit.OrderStatus = model.OrderStatus;
-                visit.VisitData = model.VisitData;
-
+                visit = Mapper.Map<Visit>(model);
+              
                 repository.EditVisit(visit);
 
                 return RedirectToAction("Details", "Clients", new { id = clientId });

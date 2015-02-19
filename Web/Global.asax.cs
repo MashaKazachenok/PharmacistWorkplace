@@ -29,6 +29,10 @@ namespace Web
             Mapper.CreateMap<Client, ClientViewModel>();
             Mapper.CreateMap<Client, ClientDetailsViewModel>();
             Mapper.CreateMap<Client, ClientInfoViewModel>();
+            Mapper.CreateMap<Client, VisitViewModel>();
+            Mapper.CreateMap<VisitViewModel, Visit>();
+            Mapper.CreateMap<Visit, VisitViewModel>();
+        
         }
     }
 }
