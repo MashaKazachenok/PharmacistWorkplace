@@ -12,6 +12,12 @@ namespace Web.Controllers
 {
     public class VisitsController : Controller
     {
+         ClientRepository repository;
+
+        public VisitsController()
+        {
+            repository = new ClientRepository();
+        }
         //
         // GET: /Visits/
         public ActionResult Index()
@@ -30,7 +36,6 @@ namespace Web.Controllers
         // GET: /Visits/Create
         public ActionResult Create(int clientId)
         {
-            ClientRepository repository = new ClientRepository();
             Client client = repository.GetClientById(clientId);
 
             VisitViewModel model = new VisitViewModel();
@@ -48,8 +53,6 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                ClientRepository repository = new ClientRepository();
-
                 Client client = repository.GetClientById(clientId);
 
                 Visit visit = new Visit();
@@ -71,8 +74,6 @@ namespace Web.Controllers
         // GET: /Visits/Edit/5
         public ActionResult Edit(int id)
         {
-            ClientRepository repository = new ClientRepository();
-
             Visit visit = repository.GetVisitById(id);
             VisitViewModel model = new VisitViewModel();
             model = Mapper.Map<VisitViewModel>(visit);
@@ -87,8 +88,6 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                ClientRepository repository = new ClientRepository();
-
                 Visit visit = repository.GetVisitById(id);
                 visit = Mapper.Map<VisitViewModel, Visit>(model, visit);
               
@@ -106,7 +105,6 @@ namespace Web.Controllers
         // GET: /Visits/Delete/5
         public ActionResult Delete(int id, int clientId)
         {
-            ClientRepository repository = new ClientRepository();
             repository.RemoveVisit(id);
 
             return RedirectToAction("Details", "Clients", new { id = clientId });
