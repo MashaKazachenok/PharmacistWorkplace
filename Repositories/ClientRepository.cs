@@ -36,7 +36,7 @@ namespace Repositories
 
         public List<Client> GetAllClients(string search)
         {
-            if (search == null || search == "")
+            if (string.IsNullOrWhiteSpace(search))
             {
                 List<Client> spisok = databaseContext.Clients
                     .Include("Visits")
