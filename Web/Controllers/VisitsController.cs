@@ -90,7 +90,7 @@ namespace Web.Controllers
                 ClientRepository repository = new ClientRepository();
 
                 Visit visit = repository.GetVisitById(id);
-                visit = Mapper.Map<Visit>(model);
+                visit = Mapper.Map<VisitViewModel, Visit>(model, visit);
               
                 repository.EditVisit(visit);
 

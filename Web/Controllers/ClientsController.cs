@@ -35,6 +35,7 @@ namespace Web.Controllers
                 ClientInfoViewModel clientInfoviewModel = new ClientInfoViewModel();
 
                 clientInfoviewModel = Mapper.Map<ClientInfoViewModel>(client);
+                clientInfoviewModel.VisitCount = client.Visits.Count;
 
                 model.Clients.Add(clientInfoviewModel);
             }
