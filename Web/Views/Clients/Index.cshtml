@@ -45,7 +45,7 @@
                 <td>@item.LastName</td>
                 <td>@item.DateOfBirth.ToShortDateString()</td>
                 <td>@item.VisitCount</td>
-                <td><a href="/Clients/Edit/@item.Id">Edit</a></td>
+                <td><a href="@Url.Action("Edit", "Clients", new{@item.Id})">Edit</a></td>
                 <td>
                     <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="modal" data-target="#@dialogId"></span>
                     <!-- Modal -->

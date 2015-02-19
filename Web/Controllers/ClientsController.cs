@@ -26,19 +26,11 @@ namespace Web.Controllers
         public ActionResult Index(string search)
         {
             List<Client> clients = repository.GetAllClients(search);
-            ClientListViewModel model = new ClientListViewModel();
 
-            model.Clients = new List<ClientInfoViewModel>();
-
-            foreach (var client in clients)
+            ClientListViewModel model = new ClientListViewModel
             {
-                ClientInfoViewModel clientInfoviewModel = new ClientInfoViewModel();
-
-                clientInfoviewModel = Mapper.Map<ClientInfoViewModel>(client);
-                clientInfoviewModel.VisitCount = client.Visits.Count;
-
-                model.Clients.Add(clientInfoviewModel);
-            }
+                Clients = Mapper.Map<List<ClientInfoViewModel>>(clients)
+            };
 
             return View(model);
         }
@@ -54,16 +46,7 @@ namespace Web.Controllers
             model = Mapper.Map<ClientDetailsViewModel>(client);
 
             List<Visit> visits = repository.GetAllVisitsByClientId(client.Id);
-
-            foreach (var visit in visits)
-            {
-                VisitDetailsViewModel visitModel = new VisitDetailsViewModel();
-
-                visitModel = Mapper.Map<VisitDetailsViewModel>(visit);
-
-                model.Visits.Add(visitModel);
-            }
-
+            model.Visits = Mapper.Map<List<VisitDetailsViewModel>>(visits);
             return View(model);
         }
 
